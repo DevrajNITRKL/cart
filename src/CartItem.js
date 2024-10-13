@@ -1,18 +1,7 @@
 import React from 'react';
 
 class CartItem extends React.Component {
-    constructor () {
-        super();
-        this.state = {
-            price: 998,
-            title: 'Mobile Phone',
-            qty: 2,
-            img : ''
-
-        }
-        // this.increaseQuantity = this.increaseQuantity(this);;
-        // this.testing();
-    }
+    
 
     // testing (){
     //     const promise = new Promise((resolve, reject) => {
@@ -61,12 +50,13 @@ class CartItem extends React.Component {
         console.log('delete');
     }
     render () {
-        console.log('render');
-        const {price,title,qty} = this.state;
+        console.log('this.props',this.props);
+        const {price,title,qty} = this.props.product;
         
 
         return (
             <div className="cart-item">
+                {/* {this.props.jsx} */}
                 <div className="left-block">
                     <img style={styles.images}/>
                 </div>
