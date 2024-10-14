@@ -58,7 +58,7 @@ const CartItem = (props) => {
         <div className="cart-item">
             {/* {this.props.jsx} */}
             <div className="left-block">
-                <img style={styles.images}/>
+                <img style={styles.images} src = {product.img} alt=''/>
             </div>
             <div className="right-block">
                 <div>{title}</div>
