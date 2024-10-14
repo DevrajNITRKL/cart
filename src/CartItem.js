@@ -21,7 +21,7 @@ class CartItem extends React.Component {
     // }
 
 
-    increaseQuantity = () => {
+    // increaseQuantity = () => {
         // this.state.qty += 1;
         // console.log('this',this.state);
         // setState form 1
@@ -31,28 +31,28 @@ class CartItem extends React.Component {
         
 
         // setState form 2 used when previous state is needed
-        this.setState((prevState)=>{
-            return{
-                qty:prevState.qty + 1
-            }
-        },()=>{console.log('this.state',this.state);});
-    }
-    decreaseQuantity = () =>{
-        const {qty} = this.state;
-        if(qty === 0) { return;}
-        this.setState((prevState)=>{
-            return{
-                qty:prevState.qty - 1
-            }
-        });
-    }
-    deleteQuantity (){
-        console.log('delete');
-    }
+    //     this.setState((prevState)=>{
+    //         return{
+    //             qty:prevState.qty + 1
+    //         }
+    //     },()=>{console.log('this.state',this.state);});
+    // }
+    // decreaseQuantity = () =>{
+    //     const {qty} = this.state;
+    //     if(qty === 0) { return;}
+    //     this.setState((prevState)=>{
+    //         return{
+    //             qty:prevState.qty - 1
+    //         }
+    //     });
+    // }
+    // deleteQuantity (){
+    //     console.log('delete');
+    // }
     render () {
         console.log('this.props',this.props);
         const {price,title,qty} = this.props.product;
-        
+        const {product,onIncreaseQunatity,onDecreaseQunatity,onDeleteQunatity}=this.props;
 
         return (
             <div className="cart-item">
@@ -66,9 +66,9 @@ class CartItem extends React.Component {
                     <div>{qty}</div>
                     <div className="cart-item-actions">
                         {/* {Buttons} */}
-                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=1501&format=png&color=000000" alt="increase" onClick={this.increaseQuantity}/>
-                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=14088&format=png&color=000000" alt="decrease" onClick={this.decreaseQuantity}/>
-                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=KPhFC2OwpbWV&format=png&color=000000" alt="delete" onClick={this.deleteQuantity}/>
+                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=1501&format=png&color=000000" alt="increase" onClick={()=>onIncreaseQunatity(product)}/>
+                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=14088&format=png&color=000000" alt="decrease" onClick={()=>onDecreaseQunatity(product)}/>
+                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=KPhFC2OwpbWV&format=png&color=000000" alt="delete" onClick={()=> onDeleteQunatity(product.id)}/>
                     </div>
                 </div>
             </div>
