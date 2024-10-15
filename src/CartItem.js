@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CartItem extends React.Component {
+const CartItem = (props) => {
     
 
     // testing (){
@@ -49,31 +49,30 @@ class CartItem extends React.Component {
     // deleteQuantity (){
     //     console.log('delete');
     // }
-    render () {
-        console.log('this.props',this.props);
-        const {price,title,qty} = this.props.product;
-        const {product,onIncreaseQunatity,onDecreaseQunatity,onDeleteQunatity}=this.props;
+// render () {
+    const {price,title,qty} = props.product;
+    const {product,onIncreaseQunatity,onDecreaseQunatity,onDeleteQunatity}=props;
 
-        return (
-            <div className="cart-item">
-                {/* {this.props.jsx} */}
-                <div className="left-block">
-                    <img style={styles.images}/>
-                </div>
-                <div className="right-block">
-                    <div>{title}</div>
-                    <div>{price}</div>
-                    <div>{qty}</div>
-                    <div className="cart-item-actions">
-                        {/* {Buttons} */}
-                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=1501&format=png&color=000000" alt="increase" onClick={()=>onIncreaseQunatity(product)}/>
-                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=14088&format=png&color=000000" alt="decrease" onClick={()=>onDecreaseQunatity(product)}/>
-                        <img className="action-icons" src="https://img.icons8.com/?size=100&id=KPhFC2OwpbWV&format=png&color=000000" alt="delete" onClick={()=> onDeleteQunatity(product.id)}/>
-                    </div>
+    return (
+        <div className="cart-item">
+            {/* {this.props.jsx} */}
+            <div className="left-block">
+                <img style={styles.images} src={product.img}/>
+            </div>
+            <div className="right-block">
+                <div>{title}</div>
+                <div>{price}</div>
+                <div>{qty}</div>
+                <div className="cart-item-actions">
+                    {/* {Buttons} */}
+                    <img className="action-icons" src="https://img.icons8.com/?size=100&id=1501&format=png&color=000000" alt="increase" onClick={()=>onIncreaseQunatity(product)}/>
+                    <img className="action-icons" src="https://img.icons8.com/?size=100&id=14088&format=png&color=000000" alt="decrease" onClick={()=>onDecreaseQunatity(product)}/>
+                    <img className="action-icons" src="https://img.icons8.com/?size=100&id=KPhFC2OwpbWV&format=png&color=000000" alt="delete" onClick={()=> onDeleteQunatity(product.id)}/>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
+// }
 }
 
 const styles = {
