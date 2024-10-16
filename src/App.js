@@ -3,42 +3,69 @@ import React from'react';
 import CartItem from "./CartItem";
 import Cart from './Cart';
 import Navbar from './Navbar';
-
+import firebase from "firebase/compat/app"; 
 class App extends React.Component {
   
   constructor () {
     super();
     this.state = {
         products:[
-            {
-                price:39999,
-                title:'Watch',
-                qty:2,
-                img:'https://idestiny.in/wp-content/uploads/2022/09/Apple_Watch_SE_LTE_40mm_Starlight_Aluminum_Starlight_Sport_Band_PDP_Images_Position-1__en-IN.jpg',
-                id:1
-                
-            },
-            {
-                price:99999,
-                title:'Mobile Phone',
-                qty:1,
-                img:'https://www.reliancedigital.in/medias/Apple-iPhone16ProMax-494423059-i-1-1200Wx1200H-300Wx300H?context=bWFzdGVyfGltYWdlc3wyOTM2MXxpbWFnZS9qcGVnfGltYWdlcy9oM2EvaGEzLzEwMTk1OTA4OTg0ODYyLmpwZ3w2MjMyOGJjMTFhMDRjZjFiNWRkOGU4NjNjZWJiMDUwNWNkNmE0YzdhMjE3MjVjNDRjNWFlMjA0ZDU2MDFjODhk',
-                id:2
-                
-            },
-            {
-                price:89999,
-                title:'Laptop',
-                qty:1,
-                img:'https://www.apple.com/newsroom/images/product/mac/standard/Apple_16-inch-MacBook-Pro_111319_big.jpg.large.jpg',
-                id:3
-                
-            }    
+          // {
+          //     price:39999,
+          //     title:'Watch',
+          //     qty:2,
+          //     img:'https://idestiny.in/wp-content/uploads/2022/09/Apple_Watch_SE_LTE_40mm_Starlight_Aluminum_Starlight_Sport_Band_PDP_Images_Position-1__en-IN.jpg',
+          //     id:1
+              
+          // },
+          // {
+          //     price:99999,
+          //     title:'Mobile Phone',
+          //     qty:1,
+          //     img:'https://www.reliancedigital.in/medias/Apple-iPhone16ProMax-494423059-i-1-1200Wx1200H-300Wx300H?context=bWFzdGVyfGltYWdlc3wyOTM2MXxpbWFnZS9qcGVnfGltYWdlcy9oM2EvaGEzLzEwMTk1OTA4OTg0ODYyLmpwZ3w2MjMyOGJjMTFhMDRjZjFiNWRkOGU4NjNjZWJiMDUwNWNkNmE0YzdhMjE3MjVjNDRjNWFlMjA0ZDU2MDFjODhk',
+          //     id:2
+              
+          // },
+          // {
+          //     price:89999,
+          //     title:'Laptop',
+          //     qty:1,
+          //     img:'https://www.apple.com/newsroom/images/product/mac/standard/Apple_16-inch-MacBook-Pro_111319_big.jpg.large.jpg',
+          //     id:3
+              
+          // }    
 
-        ]
+        ],
+        loading:true
     }
     // this.increaseQuantity = this.increaseQuantity(this);;
     // this.testing();
+}
+
+componentDidMount(){
+  firebase
+    .firestore()
+    .collection('products')
+    .get()
+    .then((snapshot)=>{
+      console.log(snapshot);
+
+      snapshot.docs.map((doc)=>{
+        console.log(doc.data())
+      });
+
+      const products = snapshot.docs.map((doc)=>{
+        const data = doc.data();
+        data['id']=doc.id;
+        return data;
+      })
+
+      this.setState({
+        products,
+        loading:false
+      })
+
+    })
 }
 handleIncreaseQuantity = (product) => {
     console.log('Heyy please increase the quantity of',product);
@@ -97,7 +124,7 @@ getCartTotal = () =>{
 
   render(){
 
-    const {products} = this.state;
+    const {products,loading} = this.state;
     return (
       <div className="App">
       <Navbar count = {this.getCartCount()}/>
@@ -108,6 +135,7 @@ getCartTotal = () =>{
         onDeleteQunatity={this.handleDeleteProduct}
 
       />
+      {loading && <h1>Loading Products .....</h1>}
       <div style={{fontSize:25,padding:15}}>TOTAL:{this.getCartTotal()}</div>
       </div>
     );
