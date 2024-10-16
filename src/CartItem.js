@@ -49,7 +49,12 @@ const CartItem = (props) => {
     // deleteQuantity (){
     //     console.log('delete');
     // }
+<<<<<<< HEAD
 // render () {
+=======
+    
+    // console.log('this.props',this.props);
+>>>>>>> 461305075fe040332154f4ee7bfa25f77a4fb7f8
     const {price,title,qty} = props.product;
     const {product,onIncreaseQunatity,onDecreaseQunatity,onDeleteQunatity}=props;
 
@@ -57,7 +62,11 @@ const CartItem = (props) => {
         <div className="cart-item">
             {/* {this.props.jsx} */}
             <div className="left-block">
+<<<<<<< HEAD
                 <img style={styles.images} src={product.img}/>
+=======
+                <img style={styles.images} src = {product.img} alt=''/>
+>>>>>>> 461305075fe040332154f4ee7bfa25f77a4fb7f8
             </div>
             <div className="right-block">
                 <div>{title}</div>
@@ -72,7 +81,10 @@ const CartItem = (props) => {
             </div>
         </div>
     );
+<<<<<<< HEAD
 // }
+=======
+>>>>>>> 461305075fe040332154f4ee7bfa25f77a4fb7f8
 }
 
 const styles = {
